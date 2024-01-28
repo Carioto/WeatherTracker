@@ -6,6 +6,8 @@ var searchCity = document.querySelector("#search_city");
 var thisDay = dayjs();
 var displayDate = document.querySelector("#currentDay");
 var emptyEl = document.querySelector("#emptyfield");
+var pickAcity = document.querySelector('#pickcity');
+
 
 //add new city to list of previous cities
 //maintain a previous cities list of 8 max
@@ -28,7 +30,6 @@ function getCityData() {
     })
     .then(function(data){
 //If no data returns, inform user and return
-        console.log(data.length);
         if (data.length === 0) {
          emptyEl.textContent="This city was not recognized";
          return;
@@ -113,4 +114,16 @@ searchBtn.addEventListener("click", function(event) {
     emptyEl.textContent="";
     getCityData();
 }})
+//When a previous city is clicked, display its data
+pickAcity.addEventListener('click',buttonClick);
 
+//Previous city select function
+function buttonClick(event) {
+    var pCitTemp = event.target.getAttribute('id');
+    pCity = document.getElementById(pCitTemp);
+    if (pCity) {
+        searchCity.value = pCity.textContent;
+        emptyEl.textContent="";
+        getCityData();
+    }
+  };
