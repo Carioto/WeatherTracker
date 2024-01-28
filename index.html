@@ -36,12 +36,14 @@
     <header>
        <h1>Weather Dashboard</h1>
     </header>
-
-  <div class="container" id="search_cont">
-    <input type="text" id="search_city" placeholder="Search City">
+  <form>
+   <div class="container" id="search_cont">
+    <input type="text" id="search_city" placeholder="" required />
      <button id="goButton">GO</button>
      <span id="currentDay"></span>
-  </div>
+     <span id="emptyfield"></span>
+    </div>
+  </form>
     <div class="container" id="bigBox">
 <!-- container for previously viewed cities -->
     <div class="container" id="prev_cities" >

@@ -5,6 +5,7 @@ var searchBtn = document.querySelector("#goButton");
 var searchCity = document.querySelector("#search_city");
 var thisDay = dayjs();
 var displayDate = document.querySelector("#currentDay");
+var emptyEl = document.querySelector("#emptyfield");
 
 //add new city to list of previous cities
 function addCityToPrev() {
@@ -21,7 +22,6 @@ function getCityData() {
 // get coordinates using city name
     var coordUrl = coorEndPoint + searchCity.value
                 + "&limit=1&appid=" + apiKey;
-                console.log(coordUrl);
     fetch(coordUrl)
      .then(function (response) {
         return response.json();
@@ -33,7 +33,6 @@ function getCityData() {
         var weathUrl = rootEndPoint + "lat=" + lat
               + "&lon=" + lon + "&exclude=hourly,minutely&units=imperial" 
               + "&appid=" + apiKey;
-              console.log(weathUrl);
         fetch(weathUrl)
         .then(function(response){
             return response.json();
@@ -77,18 +76,28 @@ $(document).ready(function () {
     var timeInterval = setInterval (function() {
         var thisDay = dayjs();
         displayDate.textContent = thisDay.format('MMMM DD, YYYY  hh:mma');
-    }, 1000)
-    var prevList=JSON.parse(localStorage.getItem('jsonList')) || [];
-    for (i=7; i > -1; i-- ) {
-        var citList = document.getElementById("cit"+i);
-        citList.textContent = prevList[i];
-    }
+    }, 1000);
+ loadPrev();
 });
+
+function loadPrev(){
+var prevList=JSON.parse(localStorage.getItem('jsonList')) || [];
+for (i=7; i > -1; i-- ) {
+    var citList = document.getElementById("cit"+i);
+    citList.textContent = prevList[i];
+}}
 
 // When GO is clicked, add city to previous
 // and get new city data
-searchBtn.addEventListener("click", function() {
+searchBtn.addEventListener("click", function(event) {
+    event.preventDefault();
+    if (searchCity.value === ""){
+        emptyEl.textContent="Field cannot be empty";
+        return;
+    }else{
+        emptyEl.textContent="";
     insertDates();
     addCityToPrev();
     getCityData();
-})
+    loadPrev();
+}})

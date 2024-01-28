@@ -53,3 +53,7 @@ header{
     padding-top: 3px;
 
 }
+#emptyfield {
+    color:red;
+    margin-left: 5px;
+}
