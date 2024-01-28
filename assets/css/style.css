@@ -1,0 +1,55 @@
+
+.container {
+    font-size: 20px;
+}
+#bigBox {
+    display: flex;
+    padding: 3px;
+    height: 70vh;
+    width: 100vw;
+    justify-content: space-between;
+}
+#prev_cities{ margin: 2%;
+    border: 2px black solid;
+    width:20%;
+    padding-top:5px ;
+    height: 53%;
+}
+#current_city {
+        margin: 2%;
+        width: 75%;
+        border: 2px black solid;
+}
+header{
+    font-size: 45px;
+    text-align: center;
+    color: rgb(86, 145, 234);
+    background-color: yellow;
+    padding: 10px;
+    margin-bottom: 7px;
+}
+
+#curWeather {
+    width:97%;
+    border: 1px black solid;
+    margin: 14px auto;
+    height: 35%;
+}
+#fiveDay {
+    display: flex;
+    justify-content: space-between;
+    height: 18%;
+}
+#dayTwo,
+#dayThree,
+#dayFour,
+#dayFive,
+#daySix {
+     width: 19%;
+    border: 1px black solid;
+    height: 190%;
+    font-size: 14px;
+    padding-left: 2px;
+    padding-top: 3px;
+
+}
