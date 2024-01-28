@@ -23,16 +23,21 @@ function getCityData() {
     var coordUrl = coorEndPoint + searchCity.value
                 + "&limit=1&appid=" + apiKey;
     fetch(coordUrl)
-     .then(function (response) {
+    .then(function (response) {
         return response.json();
     })
     .then(function(data){
-        var coordData=data;
-        var lat = coordData[0].lat;
-        var lon = coordData[0].lon;
+        console.log(data.length);
+        if (data.length === 0) {
+         emptyEl.textContent="This city was not recognized";
+         return;
+        }else{
+            var coordData=data;
+            var lat = coordData[0].lat;
+            var lon = coordData[0].lon;
         var weathUrl = rootEndPoint + "lat=" + lat
-              + "&lon=" + lon + "&exclude=hourly,minutely&units=imperial" 
-              + "&appid=" + apiKey;
+        + "&lon=" + lon + "&exclude=hourly,minutely&units=imperial" 
+        + "&appid=" + apiKey;
         fetch(weathUrl)
         .then(function(response){
             return response.json();
@@ -40,16 +45,19 @@ function getCityData() {
         .then(function(data){ 
           var weathdata=data;
           for (d=0; d<6; d++){
-            e=d+1
+              e=d+1
             var temper=document.getElementById("temp"+e);
             var windy=document.getElementById("wind"+e);
             var humid=document.getElementById("hum"+e);
-          windy.textContent=Math.round(weathdata.daily[d].wind_speed)+" mph";
-          humid.textContent=weathdata.daily[d].humidity+"%";
-          temper.textContent=Math.round(weathdata.daily[d].temp.day)+"°F";
-          };
-        })
+            windy.textContent=Math.round(weathdata.daily[d].wind_speed)+" mph";
+            humid.textContent=weathdata.daily[d].humidity+"%";
+            temper.textContent=Math.round(weathdata.daily[d].temp.day)+"°F";
+        };
     })
+    insertDates();
+    addCityToPrev();
+    loadPrev();
+    }})
 }
 
 function insertDates() {
@@ -95,9 +103,6 @@ searchBtn.addEventListener("click", function(event) {
         emptyEl.textContent="Field cannot be empty";
         return;
     }else{
-        emptyEl.textContent="";
-    insertDates();
-    addCityToPrev();
+    emptyEl.textContent="";
     getCityData();
-    loadPrev();
 }})
