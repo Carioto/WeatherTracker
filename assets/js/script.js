@@ -8,10 +8,10 @@ var displayDate = document.querySelector("#currentDay");
 var emptyEl = document.querySelector("#emptyfield");
 
 //add new city to list of previous cities
+//maintain a previous cities list of 8 max
 function addCityToPrev() {
     var prevList=JSON.parse(localStorage.getItem('jsonList')) || [];
     prevList.push(searchCity.value);
-//maintain a previous cities list of 8 max
     if (prevList.length > 8){
         prevList.shift();
     };
@@ -27,11 +27,13 @@ function getCityData() {
         return response.json();
     })
     .then(function(data){
+//If no data returns, inform user and return
         console.log(data.length);
         if (data.length === 0) {
          emptyEl.textContent="This city was not recognized";
          return;
         }else{
+//use coordinates returned to fetch weather data
             var coordData=data;
             var lat = coordData[0].lat;
             var lon = coordData[0].lon;
@@ -43,6 +45,7 @@ function getCityData() {
             return response.json();
         })
         .then(function(data){ 
+//loop through 6 days and display data
           var weathdata=data;
           for (d=0; d<6; d++){
               e=d+1
@@ -54,12 +57,13 @@ function getCityData() {
             temper.textContent=Math.round(weathdata.daily[d].temp.day)+"°F";
         };
     })
+//add dates, add current city to list, redisplay list
     insertDates();
     addCityToPrev();
     loadPrev();
     }})
 }
-
+//Add dates function
 function insertDates() {
     var thisDay = dayjs();
     var oneDay = document.getElementById("date1");
@@ -78,7 +82,9 @@ function insertDates() {
 
 
 // begin code
-//after page loads display date, time, and previous cities
+//after page loads display current date, time, 
+//and previous cities
+//Run interval for clock
 $(document).ready(function () {
     displayDate.textContent = thisDay.format('MMMM DD, YYYY  hh:mma');
     var timeInterval = setInterval (function() {
@@ -88,6 +94,7 @@ $(document).ready(function () {
  loadPrev();
 });
 
+//Load previous cities searched list
 function loadPrev(){
 var prevList=JSON.parse(localStorage.getItem('jsonList')) || [];
 for (i=7; i > -1; i-- ) {
@@ -106,3 +113,4 @@ searchBtn.addEventListener("click", function(event) {
     emptyEl.textContent="";
     getCityData();
 }})
+
