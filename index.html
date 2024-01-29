@@ -36,19 +36,19 @@
     <header>
        <h1>Weather Dashboard</h1>
     </header>
-  <form>
-   <div class="container" id="search_cont">
-    <input type="text" id="search_city" placeholder="" required />
+  <div class="container" id="search_cont">
+    <form>
+     <input type="text" id="search_city" placeholder="Search City" required />
      <button id="goButton">GO</button>
-     <span id="currentDay"></span>
      <span id="emptyfield"></span>
-    </div>
-  </form>
+    </form>
+    <span id="currentDay"></span>
+  </div>
     <div class="container" id="bigBox">
 <!-- container for previously viewed cities -->
     <div class="container" id="prev_cities" >
       <div class="list-group" id="pickcity">
-        <button type="button" class="list-group-item list-group-item-action active fs-6" id="cit7">current</button>
+        <button type="button" class="list-group-item list-group-item-action fs-6" id="cit7">current</button>
         <button type="button" class="list-group-item list-group-item-action fs-6" id="cit6">second</button>
         <button type="button" class="list-group-item list-group-item-action fs-6" id="cit5">third</button>
         <button type="button" class="list-group-item list-group-item-action fs-6" id="cit4">fourth</button>

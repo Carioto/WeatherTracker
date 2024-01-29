@@ -1,6 +1,9 @@
 var coorEndPoint = "https://api.openweathermap.org/geo/1.0/direct?q="
 var rootEndPoint = "https://api.openweathermap.org/data/3.0/onecall?"
-var apiKey = config.My_Key;
+// var apiKey = config.My_Key;
+//instructions in readme for challange direct me to use 
+//my API key in my code
+var apiKey = "19be75e028fe1ad48763744abc3054ec";
 var searchBtn = document.querySelector("#goButton");
 var searchCity = document.querySelector("#search_city");
 var thisDay = dayjs();

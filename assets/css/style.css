@@ -1,4 +1,3 @@
-
 .container {
     font-size: 20px;
 }
@@ -57,3 +56,38 @@ header{
     color:red;
     margin-left: 5px;
 }
+
+@media screen and (max-width: 768px) {
+
+#bigBox {
+    display: block;
+}
+#prev_cities{
+    width:90%;
+    height: 70%;
+    font-size: 20px;
+    }
+#current_city {
+            width: 90%;
+            height: auto;
+    }
+#dayTwo,
+#dayThree,
+#dayFour,
+#dayFive,
+#daySix {
+        width: 90%;
+        padding-left: 2px;
+        padding-top: 3px;
+    
+    }
+#fiveDay {
+    display: block;
+    width: 90%;
+    margin-bottom: 7px;
+}
+form{
+    font-size: 14px;
+    display: block;
+}
+  }
