@@ -8,11 +8,16 @@
     width: 100vw;
     justify-content: space-between;
 }
+#citlistlabel{
+   font-size: 12px;
+   color:blueviolet
+}
+
 #prev_cities{ margin: 2%;
     border: 2px black solid;
     width:20%;
     padding-top:5px ;
-    height: 53%;
+    height: 58%;
 }
 #current_city {
         margin: 2%;

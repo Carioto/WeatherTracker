@@ -7,7 +7,7 @@ listed and clickable to display most current data.
 
 ## Installation
 
-Run this app by navigating to ________________________
+Run this app by navigating to https://carioto.github.io/WeatherTracker/
 
 ## Usage
 

@@ -100,8 +100,12 @@ function loadPrev(){
 var prevList=JSON.parse(localStorage.getItem('jsonList')) || [];
 for (i=7; i > -1; i-- ) {
     var citList = document.getElementById("cit"+i);
-    citList.textContent = prevList[i];
-}}
+    if (!prevList[i]){
+      citList.setAttribute("style", "display:none");
+    }else{
+     citList.setAttribute("style", "display:block");
+     citList.textContent = prevList[i];
+}}}
 
 // When GO is clicked, add city to previous
 // and get new city data
@@ -111,19 +115,18 @@ searchBtn.addEventListener("click", function(event) {
         emptyEl.textContent="Field cannot be empty";
         return;
     }else{
-    emptyEl.textContent="";
-    getCityData();
-}})
-//When a previous city is clicked, display its data
-pickAcity.addEventListener('click',buttonClick);
-
-//Previous city select function
-function buttonClick(event) {
-    var pCitTemp = event.target.getAttribute('id');
-    pCity = document.getElementById(pCitTemp);
-    if (pCity) {
+        emptyEl.textContent="";
+        getCityData();
+    }})
+    //When a previous city is clicked, display its data
+    pickAcity.addEventListener('click',buttonClick);
+    
+    //Previous city select function
+    function buttonClick(event) {
+        var pCitTemp = event.target.getAttribute('id');
+        pCity = document.getElementById(pCitTemp);
+        if (pCity) {
         searchCity.value = pCity.textContent;
         emptyEl.textContent="";
         getCityData();
-    }
-  };
+    }};
