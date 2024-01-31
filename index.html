@@ -38,16 +38,16 @@
     </header>
   <div class="container" id="search_cont">
     <form>
-     <input type="text" id="search_city" placeholder="Search City" required />
+     <input type="text" id="search_city" placeholder="Search City">
      <button id="goButton">GO</button>
      <span id="emptyfield"></span>
     </form>
-    <span id="currentDay"></span>
+    <p id="currentDay"></p>
   </div>
     <div class="container" id="bigBox">
 <!-- container for previously viewed cities -->
     <div class="container" id="prev_cities" >
-      <span id="citlistlabel">Previously Viewed Cities</span>
+      <p id="citlistlabel">Previously Viewed Cities</p>
       <div class="list-group" id="pickcity">
         <button type="button" class="list-group-item list-group-item-action fs-6" id="cit7"></button>
         <button type="button" class="list-group-item list-group-item-action fs-6" id="cit6"></button>
@@ -62,8 +62,12 @@
 <!-- container for current city data -->
     <div class="container" id="current_city">
         <div class="container" id="curWeather">
-          <span id="date1"></span> 
+          <div class="container" id ="citydatecont">
+            <p id="citname"></p>
+            <p id="date1"></p>
+          </div> 
           <p>Temp: <span id="temp1"></span></p>
+          <p><img id="icon1" src="" alt="weather icon"></img></p>
           <p>Wind: <span id="wind1"></span></p>
           <p>Humidity: <span id="hum1"></span></p>
         </div>
@@ -71,36 +75,41 @@
           <div id="dayTwo">       
             <span id="date2"></span> 
             <p>Temp: <span id="temp2"></span></p>
+            <p><img id="icon2" src="" alt="weather icon"></img></p>
             <p>Wind: <span id="wind2"></span></p>
             <p>Humidity: <span id="hum2"></span></p>
           </div>
           <div id="dayThree">
             <span id="date3"></span> 
             <p>Temp: <span id="temp3"></span></p>
+            <p><img id="icon3" src="" alt="weather icon"></img></p>
             <p>Wind: <span id="wind3"></span></p>
             <p>Humidity: <span id="hum3"></span></p>          
           </div>
           <div id="dayFour">
             <span id="date4"></span> 
             <p>Temp: <span id="temp4"></span></p>
+            <p><img id="icon4" src="" alt="weather icon"></img></p>
             <p>Wind: <span id="wind4"></span></p>
             <p>Humidity: <span id="hum4"></span></p>  
           </div>
           <div id="dayFive">
             <span id="date5"></span> 
             <p>Temp: <span id="temp5"></span></p>
+            <p><img id="icon5" src="" alt="weather icon"></img></p>
             <p>Wind: <span id="wind5"></span></p>
             <p>Humidity: <span id="hum5"></span></p>
           </div>
           <div id="daySix">   
             <span id="date6"></span> 
             <p>Temp: <span id="temp6"></span></p>
+            <p><img id="icon6" src="" alt="weather icon"></img></p>
             <p>Wind: <span id="wind6"></span></p>
             <p>Humidity: <span id="hum6"></span></p>  
           </div>
         </div>
+      </div>
     </div>
-  </div>
     <footer>
     </footer>
 

@@ -18,5 +18,5 @@ and the next 5 days.  Use the cities list to revisted any of the last 8 cities.
 
 ## Credits
 
-Sun icon by Icons8
+Sun icon by Icons8.  Assistant with icon image found at https://stackoverflow.com/questions/44177417/how-to-display-openweathermap-weather-icon.
 

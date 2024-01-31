@@ -1,5 +1,6 @@
 var coorEndPoint = "https://api.openweathermap.org/geo/1.0/direct?q="
 var rootEndPoint = "https://api.openweathermap.org/data/3.0/onecall?"
+var iconLookupUrl = "https://openweathermap.org/img/wn/"
 var apiKey = "19be75e028fe1ad48763744abc3054ec";
 var searchBtn = document.querySelector("#goButton");
 var searchCity = document.querySelector("#search_city");
@@ -13,12 +14,15 @@ var pickAcity = document.querySelector('#pickcity');
 //maintain a previous cities list of 8 max
 function addCityToPrev() {
     var prevList=JSON.parse(localStorage.getItem('jsonList')) || [];
+    if (prevList.includes(searchCity.value)){
+        return;
+    }else{
     prevList.push(searchCity.value);
     if (prevList.length > 8){
         prevList.shift();
     };
     localStorage.setItem('jsonList', JSON.stringify(prevList))
-}
+}}
 
 function getCityData() {
 // get coordinates using city name
@@ -35,33 +39,39 @@ function getCityData() {
          return;
         }else{
 //use coordinates returned to fetch weather data
-            var coordData=data;
-            var lat = coordData[0].lat;
-            var lon = coordData[0].lon;
-        var weathUrl = rootEndPoint + "lat=" + lat
-        + "&lon=" + lon + "&exclude=hourly,minutely&units=imperial" 
-        + "&appid=" + apiKey;
-        fetch(weathUrl)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){ 
-//loop through 6 days and display data
+var coordData=data;
+var disCity = document.getElementById("citname");
+disCity.textContent = (coordData[0].name + ", " + coordData[0].state);
+var lat = coordData[0].lat;
+var lon = coordData[0].lon;
+var weathUrl = rootEndPoint + "lat=" + lat
++ "&lon=" + lon + "&exclude=hourly,minutely&units=imperial" 
++ "&appid=" + apiKey;
+fetch(weathUrl)
+.then(function(response){
+    return response.json();
+})
+.then(function(data){ 
+    //loop through 6 days and display data
           var weathdata=data;
           for (d=0; d<6; d++){
               e=d+1
             var temper=document.getElementById("temp"+e);
             var windy=document.getElementById("wind"+e);
             var humid=document.getElementById("hum"+e);
+            var iconEl=document.getElementById("icon"+e);
+            var iconCode=iconLookupUrl + weathdata.daily[d].weather[0].icon + ".png";
+            iconEl.setAttribute('src', iconCode);
             windy.textContent=Math.round(weathdata.daily[d].wind_speed)+" mph";
             humid.textContent=weathdata.daily[d].humidity+"%";
             temper.textContent=Math.round(weathdata.daily[d].temp.day)+"°F";
         };
     })
-//add dates, add current city to list, redisplay list
+//add dates, add current city to list, redisplay list, clear search.
     insertDates();
     addCityToPrev();
     loadPrev();
+    searchCity.value="";
     }})
 }
 //Add dates function
